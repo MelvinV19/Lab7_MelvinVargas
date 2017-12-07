@@ -187,6 +187,11 @@ public class Principal extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Cajero");
 
@@ -301,7 +306,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        p = new Producto(tf_nombreproducto.getText(), Integer.parseInt(tf_precio.getText()), Integer.parseInt(tf_tiempo.getText()));
+        Producto p = new Producto(tf_nombreproducto.getText(), Integer.parseInt(tf_precio.getText()), Integer.parseInt(tf_tiempo.getText()));
         System.out.println(p);
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) combo_producto.getModel();
         modelo.addElement(p);
@@ -314,14 +319,13 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         cl = new Cliente(tf_cliente.getText(), Integer.parseInt(tf_edad.getText()), new Orden());
-        clienteactual=cl.toString();
         tf_cliente.setText("");
         tf_edad.setText("");
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
 //        cl.getOrden().getLista().add((Producto)combo_producto.getSelectedItem());
-        cl.getOrden().setCajero((Cajero)combo_cajero.getSelectedItem());
+        cl.getOrden().setCajero((Cajero)combo_cajero.getSelectedItem()); 
         cl.getOrden().setCliente(cl);
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) combo_producto.getModel();
         cl.getOrden().getLista().add((Producto)modelo.getSelectedItem());
@@ -332,10 +336,21 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         cl.getOrden().setVive();
+        cl.getOrden().setAvanzar();
         cl.getOrden().start();
         
         
     }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       cl.getOrden().setCajero((Cajero)combo_cajero.getSelectedItem());
+        System.out.println(((Cajero)combo_cajero.getSelectedItem()));
+        cl.getOrden().setCliente(cl);
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) combo_producto.getModel();
+        cl.getOrden().getLista().add((Producto)modelo.getSelectedItem());
+        modelo.removeElement(combo_producto.getSelectedItem());
+        combo_producto.setModel(modelo);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -401,11 +416,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_precio;
     private javax.swing.JTextField tf_tiempo;
     // End of variables declaration//GEN-END:variables
-    Cajero c;
-    Producto p;
-    Cliente cl;
-    
-    int cont = 0;
-    String clienteactual;
+    public Cajero c;
+    public Cliente cl;
+    public String clienteactual;
 
 }

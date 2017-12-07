@@ -7,20 +7,23 @@ import javax.swing.table.DefaultTableModel;
 
 public class Orden extends Thread {
 
-    ArrayList<Producto> lista = new ArrayList();
+    ArrayList<Producto> lista=new ArrayList();; 
     Cajero cajero;
     Cliente cliente;
     boolean avanzar;
     boolean vive;
 
     public Orden() {
-    }
-
-    public Orden(Cliente cliente, Cajero cajero) {
-        this.avanzar = true;
+       this.avanzar = true;
         this.cliente = cliente;
         this.vive = true;
         this.cajero = cajero;
+        
+    }
+
+    public Orden(Cliente cliente, Cajero cajero) {
+        this.cajero = cajero;
+        this.cliente = cliente;
     }
 
     public Cliente getCliente() {
@@ -30,10 +33,14 @@ public class Orden extends Thread {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
-    public void setVive(){
-        vive=true;
+
+    public void setVive() {
+        vive = true;
     }
+    public void setAvanzar(){
+        avanzar=true;
+    }
+
     public Cajero getCajero() {
         return cajero;
     }
@@ -52,24 +59,32 @@ public class Orden extends Thread {
 
     @Override
     public void run() {
-        while (true) {
-            DefaultTableModel modelo=(DefaultTableModel)cajero.getFrame().tabla.getModel();
-            cajero.getFrame().jl_cajero.setText(cajero.getNombre());
-            cajero.getFrame().jl_cliente.setText(cliente.getNombre());
-            for (Producto producto : lista) {
-                try {
-                    cajero.getFrame().tf_procesando.setText(producto.nombre);
-                    Thread.sleep(producto.segundos*1000);
-                    Object fila[]=new Object[]{producto.nombre,cliente,producto.segundos};
-                    modelo.addRow(fila);
-                } catch (Exception e) {
+        while (vive==true) {
+            if (avanzar==true) {
+                DefaultTableModel modelo = (DefaultTableModel) cajero.getFrame().tabla.getModel();
+                System.out.println(cajero.getNombre());
+                System.out.println(cliente.getNombre());
+                this.cajero.getFrame().jl_cajero.setText(cajero.getNombre());
+                this.cajero.getFrame().jl_cliente.setText(cliente.getNombre());
+                for (Producto producto : lista) {
+                    try {
+                        System.out.println(producto);
+                        this.cajero.getFrame().tf_procesando.setText(producto.toString());
+                        Thread.sleep(producto.getSegundos() * 1000);
+                        Object fila[] = new Object[]{producto.getNombre(), cliente.getNombre(), producto.getSegundos()};
+                        modelo.addRow(fila);
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                 }
-    
-            }
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Orden.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Orden.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                avanzar=false;
             }
         }
     }

@@ -36,5 +36,10 @@ public class Cliente {
     public void setOrden(Orden orden) {
         this.orden = orden;
     }
+
+    @Override
+    public String toString() {
+        return nombre ;
+    }
     
 }

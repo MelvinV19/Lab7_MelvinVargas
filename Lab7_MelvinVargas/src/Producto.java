@@ -25,6 +25,19 @@ public class Producto {
         this.segundos = segundos;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public int getSegundos() {
+        return segundos;
+    }
+    
+
     @Override
     public String toString() {
         return nombre ;

@@ -28,9 +28,7 @@ public class Cajero {
     }
 
    
-    
-    
-
+ 
     public String getNombre() {
         return nombre;
     }
