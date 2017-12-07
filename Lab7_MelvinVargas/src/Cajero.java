@@ -6,20 +6,29 @@ import javax.swing.JFrame;
 public class Cajero {
     String nombre;
     String idp;
-    JFrame frame;
+    ventanaCajero frame;
     
     
 
     public Cajero() {
     }
 
-    public Cajero(String nombre, String id, JFrame frame) {
+    public Cajero(String nombre, String idp, ventanaCajero frame) {
         this.nombre = nombre;
-        this.idp = id;
+        this.idp = idp;
         this.frame = frame;
-        
     }
 
+    public ventanaCajero getFrame() {
+        return frame;
+    }
+
+    public void setFrame(ventanaCajero frame) {
+        this.frame = frame;
+    }
+
+   
+    
     
 
     public String getNombre() {
@@ -38,13 +47,7 @@ public class Cajero {
         this.idp = id;
     }
 
-    public JFrame getFrame() {
-        return frame;
-    }
-
-    public void setFrame(JFrame frame) {
-        this.frame = frame;
-    }
+    
     
 
 

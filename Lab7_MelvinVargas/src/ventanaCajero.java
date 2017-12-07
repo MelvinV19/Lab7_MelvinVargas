@@ -135,18 +135,14 @@ public class ventanaCajero extends javax.swing.JFrame implements Runnable {
                 new ventanaCajero().setVisible(true);
                
             }
-            public void ponernombre(Cajero c,String nombre,Producto p){
-                jl_cajero.setText(c.toString());
-                jl_cliente.setText(nombre);
-                tf_procesando.setText(p.toString());
-            }
+           
       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel11;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel jl_cajero;
-    private javax.swing.JLabel jl_cliente;
+    public javax.swing.JLabel jl_cajero;
+    public javax.swing.JLabel jl_cliente;
     public javax.swing.JTable tabla;
     public javax.swing.JTextField tf_procesando;
     // End of variables declaration//GEN-END:variables

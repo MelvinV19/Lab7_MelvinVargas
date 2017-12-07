@@ -193,6 +193,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel9.setText("Edad Cliente:");
 
         jButton5.setText("Realizar Compra");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -315,14 +320,22 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        cl.getOrden().getLista().add((Producto)combo_producto.getSelectedItem());
+//        cl.getOrden().getLista().add((Producto)combo_producto.getSelectedItem());
         cl.getOrden().setCajero((Cajero)combo_cajero.getSelectedItem());
+        cl.getOrden().setCliente(cl);
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) combo_producto.getModel();
+        cl.getOrden().getLista().add((Producto)modelo.getSelectedItem());
         modelo.removeElement(combo_producto.getSelectedItem());
         combo_producto.setModel(modelo);
         
-
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        cl.getOrden().setVive();
+        cl.getOrden().start();
+        
+        
+    }//GEN-LAST:event_jButton5MouseClicked
 
     /**
      * @param args the command line arguments
