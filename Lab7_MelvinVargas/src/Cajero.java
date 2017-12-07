@@ -1,19 +1,26 @@
 
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 
 public class Cajero {
     String nombre;
-    String id;
+    String idp;
+    JFrame frame;
+    
     
 
     public Cajero() {
     }
 
-    public Cajero(String nombre, String id) {
+    public Cajero(String nombre, String id, JFrame frame) {
         this.nombre = nombre;
-        this.id = id;
+        this.idp = id;
+        this.frame = frame;
+        
     }
+
+    
 
     public String getNombre() {
         return nombre;
@@ -23,21 +30,23 @@ public class Cajero {
         this.nombre = nombre;
     }
 
-    public String getId() {
-        return id;
+    public String getIdp() {
+        return idp;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.idp = id;
     }
 
-    public ArrayList<Producto> getLista() {
-        return lista;
+    public JFrame getFrame() {
+        return frame;
     }
 
-    public void setLista(ArrayList<Producto> lista) {
-        this.lista = lista;
+    public void setFrame(JFrame frame) {
+        this.frame = frame;
     }
+    
+
 
     @Override
     public String toString() {
